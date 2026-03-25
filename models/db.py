@@ -13,7 +13,7 @@ class FakeDB:
 
 db = FakeDB()
 db.data = {
-    1: Sheep(id = 1, name = "Spice", breed = "Gotland", sex = "ewe"),
+    1: Sheep(id = 1, name = "Spice", breed = "GotLand", sex = "ewe"),
     2: Sheep(id = 2, name = "Blondie", breed = "Polypay", sex = "ram"),
     3: Sheep(id = 3, name = "Deedee", breed = "Jacobs Four Horns", sex = "ram"),
     4: Sheep(id = 4, name = "Rommy", breed = "Romney", sex = "ewe"),
