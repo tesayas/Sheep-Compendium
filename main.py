@@ -6,7 +6,10 @@ app = FastAPI()
 
 @app.get("/sheep/{id}", response_model=Sheep)
 def read_sheep(id: int):
-    return db.get_sheep(id)
+    sheep = db.get_sheep(id)
+    if sheep is None:
+        raise HTTPException(status_code=404, detail="Sheep not found")
+    return sheep
 
 @app.post("/sheep", response_model=Sheep, status_code=status.HTTP_201_CREATED)
 def add_sheep(sheep: Sheep):
@@ -17,3 +20,10 @@ def add_sheep(sheep: Sheep):
     # Add the new sheep to the database
     db.data[sheep.id] = sheep
     return sheep # Return the newly added sheep data
+
+@app.delete("/sheep/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_sheep(id: int):
+    try:
+        db.delete_sheep(id)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Sheep not found")

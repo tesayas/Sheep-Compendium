@@ -18,6 +18,11 @@ class FakeDB:
         self.data[sheep.id] = sheep
         return sheep
 
+    def delete_sheep(self, id: int) -> None:
+        if id not in self.data:
+            raise ValueError("Sheep with this ID does not exist")
+        self.data.pop(id)
+
 
 db = FakeDB()
 db.data = {

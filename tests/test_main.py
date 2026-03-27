@@ -49,3 +49,12 @@ def test_add_sheep():
     get_sheep = client.get("/sheep/7")
     assert get_sheep.status_code == 200
     assert get_sheep.json() == sheep
+
+
+#Define a test function for deleting a sheep
+def test_delete_sheep():
+    response = client.delete("/sheep/1")
+    assert response.status_code == 204
+
+    find_sheep = client.get("/sheep/1")
+    assert find_sheep.status_code == 404
